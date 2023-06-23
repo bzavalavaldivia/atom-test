@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# Output of the build process
+dist/
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/
