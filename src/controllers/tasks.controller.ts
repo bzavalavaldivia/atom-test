@@ -15,8 +15,16 @@ export class TasksController {
   }
 
   @Get('/:id')
-  public async getTaskById(@Params('id') id: string): Promise<Task> {
-    return tasksService.getTaskById(id);
+  public async getTaskById(@Response() res: Response, @Params('id') id: string): Promise<Task> {
+    const task = await tasksService.getTaskById(id);
+
+    if (!task.title) {
+      (res as unknown as ExpressResponse).status(404).json({
+        message: 'Task not found',
+      });
+    }
+
+    return task;
   }
 
   @Post('/')

@@ -4,6 +4,9 @@ node_modules
 # Output of the build process
 dist
 
+# Testing
+coverage
+
 # IDEs and editors
 .idea
 .project
