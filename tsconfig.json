@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/" /* Redirect output structure to the directory. */,
-    "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "outDir": "./dist/",
+    "target": "ES2020",
     "module": "commonjs",
-    "strict": true /* Enable all strict type-checking options. */,
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
     "resolveJsonModule": true
   },
   "exclude": ["node_modules", "dist"]

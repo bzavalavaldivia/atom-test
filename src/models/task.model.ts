@@ -1,10 +1,10 @@
-enum TaskStatus {
+export enum TaskStatus {
   COMPLETED = 'COMPLETED',
   PENDING = 'PENDING',
 }
 
 export class Task {
-  id!: number;
+  id?: string;
   title!: string;
   description!: string;
   status!: TaskStatus;
