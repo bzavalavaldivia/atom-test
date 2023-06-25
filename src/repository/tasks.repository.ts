@@ -18,8 +18,10 @@ export class TasksRepository {
     }) as unknown as Task[];
   }
 
-  public async getTaskById(id: string): Promise<Task> {
+  public async getTaskById(id: string): Promise<Task | undefined> {
     const task = await db.collection('tasks').doc(id).get();
+    if (!task.exists) return undefined;
+
     return {
       id: task.id,
       ...task.data(),
@@ -48,6 +50,6 @@ export class TasksRepository {
   public async deleteTask(id: string): Promise<Task> {
     const task = await this.getTaskById(id);
     await db.collection('tasks').doc(id).delete();
-    return task;
+    return task as Task;
   }
 }

@@ -10,7 +10,7 @@ export class TasksService {
     return await tasksRepository.getTasks();
   }
 
-  public async getTaskById(id: string): Promise<Task> {
+  public async getTaskById(id: string): Promise<Task | undefined> {
     return await tasksRepository.getTaskById(id);
   }
 
