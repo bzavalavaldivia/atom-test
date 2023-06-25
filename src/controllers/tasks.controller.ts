@@ -47,7 +47,7 @@ export class TasksController {
     if (!task) return res.status(404).json({ message: 'Task not found' });
 
     const { error, value } = validateRequest(taskSchema, req.body as unknown as Task);
-    if (error) res.status(400).json({ message: error.message });
+    if (error) return res.status(400).json({ message: error.message });
 
     return res.status(200).json(await tasksService.updateTask(task.id as string, value));
   }
