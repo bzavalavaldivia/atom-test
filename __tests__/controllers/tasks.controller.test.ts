@@ -20,6 +20,31 @@ describe('Tasks Controller tests', () => {
     task = res.body;
   });
 
+  test('Create task with wrong status', async () => {
+    const res = await request(app).post('/tasks').send({
+      title: 'Test task',
+      description: 'Test description',
+      status: 'WRONG_STATUS',
+    });
+
+    expect(res.status).toBe(400);
+    expect(JSON.parse(res.text)).toMatchObject({
+      message: '"status" must be one of [COMPLETED, PENDING]',
+    });
+  });
+
+  test('Create task without title', async () => {
+    const res = await request(app).post('/tasks').send({
+      description: 'Test description',
+      status: 'PENDING',
+    });
+
+    expect(res.status).toBe(400);
+    expect(JSON.parse(res.text)).toMatchObject({
+      message: '"title" is required',
+    });
+  });
+
   test('Get all tasks', async () => {
     const res = await request(app).get('/tasks');
     expect(res.status).toBe(200);
@@ -67,6 +92,31 @@ describe('Tasks Controller tests', () => {
     expect(res.status).toBe(404);
     expect(JSON.parse(res.text)).toMatchObject({
       message: 'Task not found',
+    });
+  });
+
+  test('Update task with wrong status', async () => {
+    const res = await request(app).put(`/tasks/${task.id}`).send({
+      title: 'Test task updated',
+      description: 'Test description updated',
+      status: 'WRONG_STATUS',
+    });
+
+    expect(res.status).toBe(400);
+    expect(JSON.parse(res.text)).toMatchObject({
+      message: '"status" must be one of [COMPLETED, PENDING]',
+    });
+  });
+
+  test('Update task without title', async () => {
+    const res = await request(app).put(`/tasks/${task.id}`).send({
+      description: 'Test description updated',
+      status: 'PENDING',
+    });
+
+    expect(res.status).toBe(400);
+    expect(JSON.parse(res.text)).toMatchObject({
+      message: '"title" is required',
     });
   });
 
